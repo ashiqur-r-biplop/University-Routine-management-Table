@@ -73,7 +73,7 @@ const App = () => {
               12.00-01.20PM
             </td>
             <td className="text-[14px] border-[#000] border-2 relative !z-[-1] border-b-[1px] border-r-[1px] text-[#000] p-[16px] text-center"></td>
-            <td className="text-[14px] border-[#000] border-2 border-b-[1px] border-r-[1px] text-[#000] p-[16px] text-center"></td>
+            <td className="text-[14px] border-[#000] border-2 border-r-[1px] text-[#000] p-[16px] text-center  border-b-0"></td>
             <td className="text-[14px] border-[#000] border-2 relative !z-[-1] border-b-[1px] border-r-[1px] text-[#000] p-[16px] text-center">
               02.00-03.20PM
             </td>
@@ -135,7 +135,12 @@ const App = () => {
                   item == 1 ? "border-l-0" : ""
                 }`}
               ></td>
-              <td className="px-[16px] border-r-[1px] py-[6px] text-[#000] border-[#000] border-2 border-t-0 border-b-0 text-[14px]"></td>
+              <td className="px-[16px] border-r-[1px] py-[6px] text-[#000] border-[#000] border-2 border-t-0 border-b-0 text-[20px]">
+                {" "}
+                {item === 4 ? "B" : ""} {item === 5 ? "R" : ""}{" "}
+                {item === 6 ? "E" : ""} {item === 7 ? "A" : ""}{" "}
+                {item === 8 ? "K" : ""}
+              </td>
               <td className="px-[16px] border-r-[1px] py-[6px] text-[#000] border-[#000] border-2 text-[14px]">
                 ENG-101(Foundation English) SNN
               </td>
