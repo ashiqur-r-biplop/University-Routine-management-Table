@@ -1,8 +1,24 @@
+import { useState } from "react";
 import TableWrapper from "./components/TableWrapper";
+import { useEffect } from "react";
 
 const App = () => {
+  const [datas, setDatas] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    fetch(
+      "https://routine-management-system-backend.onrender.com/api/v1/routine?day=Saturday&shift=Regular"
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setDatas(data);
+        setLoading(false);
+      });
+  }, []);
+  console.log(datas);
   return (
     <div className="container mx-auto">
+  
       <TableWrapper>
         <table
           border={1}
@@ -40,14 +56,14 @@ const App = () => {
               Room Number
             </td>
             <td
-              className="text-[14px] border-[#000] border-2 border-b-[1px] border-r-[1px] text-[#000] p-[16px] text-center"
+              className="text-[14px] border-[#000] border-2 border-b-[1px] border-r-[1px] text-[#000] p-[16px] text-center whitespace-nowrap"
               rowSpan={2}
               colSpan={3}
             >
               09.00-10.20AM
             </td>
             <td
-              className="text-[14px] border-[#000] border-2 border-b-[1px] border-r-[1px] text-[#000] p-[16px] text-center"
+              className="text-[14px] border-[#000] border-2 border-b-[1px] border-r-[1px] text-[#000] p-[16px] text-center whitespace-nowrap"
               rowSpan={2}
               colSpan={3}
             >
@@ -69,12 +85,12 @@ const App = () => {
             </td>
           </tr>
           <tr>
-            <td className="text-[14px] border-[#000] border-2 relative !z-[-1] border-b-[1px] border-r-[1px] text-[#000] p-[16px] text-center">
+            <td className="text-[14px] border-[#000] border-2 relative !z-[-1] border-b-[1px] border-r-[1px] whitespace-nowrap text-[#000] p-[16px] text-center">
               12.00-01.20PM
             </td>
-            <td className="text-[14px] border-[#000] border-2 relative !z-[-1] border-b-[1px] border-r-[1px] text-[#000] p-[16px] text-center"></td>
+            <td className="text-[14px] border-[#000] border-2 relative !z-[-1] border-b-[1px] border-r-[1px] whitespace-nowrap text-[#000] p-[16px] text-center"></td>
             <td className="text-[14px] border-[#000] border-2 border-r-[1px] text-[#000] p-[16px] text-center  border-b-0"></td>
-            <td className="text-[14px] border-[#000] border-2 relative !z-[-1] border-b-[1px] border-r-[1px] text-[#000] p-[16px] text-center">
+            <td className="text-[14px] border-[#000] border-2 relative !z-[-1] border-b-[1px] border-r-[1px] whitespace-nowrap text-[#000] p-[16px] text-center">
               02.00-03.20PM
             </td>
             <td className="text-[14px] border-[#000] border-2 border-b-[1px] border-r-[1px] text-[#000] p-[16px] text-center"></td>
@@ -83,70 +99,112 @@ const App = () => {
 
           {/* table footer */}
 
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]?.map((item) => (
-            <tr key={item}>
-              <td
-                className={`px-[16px] border-r-[1px]
-              bg-white  py-[6px] text-[#000] border-[#000] border-2 text-[14px]`}
-                colSpan={3}
-              >
-                27th
-              </td>
-              <td
-                className={`px-[16px] border-r-[1px]
-              bg-white  py-[6px] text-[#000] border-[#000] border-2 text-[14px]`}
-                colSpan={3}
-              >
-                1/1/2022
-              </td>
-              <td
-                className="px-[16px] border-r-[1px] py-[6px] text-[#000] border-[#000] border-2 text-[14px]"
-                colSpan={2}
-              >
-                1st
-              </td>
-              <td
-                className="px-[16px] border-r-[1px] py-[6px] text-[#000] border-[#000] border-2 text-[14px]"
-                colSpan={2}
-              >
-                1029{" "}
-              </td>
-              <td
-                colSpan={3}
-                className={`px-[16px] border-r-[1px] py-[6px] text-[#000] border-[#000] border-2 text-[14px]`}
-              >
-                MTH-101 (Mathematics-I) SA
-              </td>
-              <td
-                colSpan={3}
-                className={`px-[16px] border-r-[1px] py-[6px] text-[#000] border-[#000] border-2 text-[14px]`}
-              >
-                CSE-121 (Structured Programming Language) HOR
-              </td>
-              <td
-                className={`px-[16px] border-r-[0px] py-[6px] text-[#000] border-[#000] border-2 text-[14px] ${
-                  item == 1 ? "border-r-0" : ""
-                }`}
-              >
-                CSE-122 (Structured ProgrammingSessional) RN: 1020 HOR
-              </td>
-              <td
-                className={`px-[16px] border-r-[1px] py-[6px] text-[#000] border-[#000] border-2 text-[14px]  ${
-                  item == 1 ? "border-l-0" : ""
-                }`}
-              ></td>
-              <td className="px-[16px] border-r-[1px] py-[6px] text-[#000] border-[#000] border-2 border-t-0 border-b-0 text-[20px]">
-                {" "}
-                {item === 4 ? "B" : ""} {item === 5 ? "R" : ""}{" "}
-                {item === 6 ? "E" : ""} {item === 7 ? "A" : ""}{" "}
-                {item === 8 ? "K" : ""}
-              </td>
-              <td className="px-[16px] border-r-[1px] py-[6px] text-[#000] border-[#000] border-2 text-[14px]">
-                ENG-101(Foundation English) SNN
-              </td>
-              <td className="px-[16px] border-r-[1px] py-[6px] text-[#000] border-[#000] border-2 text-[14px]"></td>
-            </tr>
-          ))}
+          {loading
+            ? "loading"
+            : datas?.data?.map((item, index) => {
+                const { batch, courses, room, sem, yearSem } = item;
+                console.log(item);
+                return (
+                  <tr key={item}>
+                    <td
+                      className={`px-[16px] border-r-[1px]
+            bg-white  py-[6px] text-[#000] border-[#000] border-2 text-[14px]`}
+                      colSpan={3}
+                    >
+                      {batch}th
+                    </td>
+                    <td
+                      className={`px-[16px] border-r-[1px]
+            bg-white  py-[6px] text-[#000] border-[#000] border-2 text-[14px]`}
+                      colSpan={3}
+                    >
+                      {yearSem}
+                    </td>
+                    <td
+                      className="px-[16px] border-r-[1px] py-[6px] text-[#000] border-[#000] border-2 text-[14px]"
+                      colSpan={2}
+                    >
+                      {sem}
+                    </td>
+                    <td
+                      className="px-[16px] border-r-[1px] py-[6px] text-[#000] border-[#000] border-2 text-[14px]"
+                      colSpan={2}
+                    >
+                      {room}
+                    </td>
+                    <td
+                      colSpan={3}
+                      className={`px-[16px] border-r-[1px] py-[6px] text-[#000] border-[#000] border-2 text-[14px]`}
+                    >
+                      {courses?.["1"]?.courseCode && (
+                        <>
+                          {courses?.["1"]?.courseCode}{" "}
+                          {courses?.["1"]?.courseTitle}{" "}
+                        </>
+                      )}
+                    </td>
+                    <td
+                      colSpan={3}
+                      className={`px-[16px] border-r-[1px] py-[6px] text-[#000] border-[#000] border-2 text-[14px]`}
+                    >
+                      {courses?.["2"]?.courseCode && (
+                        <>
+                          {courses?.["2"]?.courseCode}{" "}
+                          {courses?.["2"]?.courseTitle}{" "}
+                        </>
+                      )}
+                    </td>
+                    <td
+                      className={`px-[16px] border-r-[0px] py-[6px] text-[#000] border-[#000] border-2 text-[14px] ${
+                        courses?.["3"]?.courseTitle?.includes("Sessional")
+                          ? "border-r-0"
+                          : ""
+                      }`}
+                    >
+                      {courses?.["3"]?.courseCode && (
+                        <>
+                          {courses?.["3"]?.courseCode}{" "}
+                          {courses?.["3"]?.courseTitle}{" "}
+                        </>
+                      )}
+                    </td>
+                    <td
+                      className={`px-[16px] border-r-[1px] py-[6px] text-[#000] border-[#000] border-2 text-[14px] ${
+                        courses?.["3"]?.courseTitle?.includes("Sessional")
+                          ? "border-l-0"
+                          : ""
+                      }`}
+                    ></td>
+                    <td className="px-[16px] border-r-[1px] py-[6px] text-[#000] border-[#000] border-2 border-t-0 border-b-0 text-[20px]">
+                      {" "}
+                      {index === 4 ? "B" : ""} {index === 5 ? "R" : ""}{" "}
+                      {index === 6 ? "E" : ""} {index === 7 ? "A" : ""}{" "}
+                      {index === 8 ? "K" : ""}
+                    </td>
+                    <td
+                      className={`px-[16px] border-r-[1px] py-[6px] text-[#000] border-[#000] border-2 text-[14px] ${
+                        courses?.["4"]?.courseTitle?.includes("Sessional")
+                          ? "border-r-0"
+                          : ""
+                      }`}
+                    >
+                      {courses?.["4"]?.courseCode && (
+                        <>
+                          {courses?.["4"]?.courseCode}{" "}
+                          {courses?.["4"]?.courseTitle}{" "}
+                        </>
+                      )}
+                    </td>
+                    <td
+                      className={`px-[16px] border-r-[1px] py-[6px] text-[#000] border-[#000] border-2 text-[14px] ${
+                        courses?.["4"]?.courseTitle?.includes("Sessional")
+                          ? "border-l-0"
+                          : ""
+                      }`}
+                    ></td>
+                  </tr>
+                );
+              })}
         </table>
       </TableWrapper>
     </div>
