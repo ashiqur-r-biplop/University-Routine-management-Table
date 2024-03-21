@@ -1,10 +1,12 @@
 import { useState } from "react";
 import TableWrapper from "./components/TableWrapper";
 import { useEffect } from "react";
+import Batch from "./components/Batch";
 
 const App = () => {
   const [datas, setDatas] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectBatch, setSelectBatch] = useState("regular");
   useEffect(() => {
     fetch(
       "https://routine-management-system-backend.onrender.com/api/v1/routine?day=Saturday&shift=Regular"
@@ -15,10 +17,9 @@ const App = () => {
         setLoading(false);
       });
   }, []);
-  console.log(datas);
   return (
     <div className="container mx-auto">
-  
+      <Batch setSelectBatch={setSelectBatch} selectBatch={selectBatch}></Batch>
       <TableWrapper>
         <table
           border={1}
@@ -103,7 +104,6 @@ const App = () => {
             ? "loading"
             : datas?.data?.map((item, index) => {
                 const { batch, courses, room, sem, yearSem } = item;
-                console.log(item);
                 return (
                   <tr key={item}>
                     <td
