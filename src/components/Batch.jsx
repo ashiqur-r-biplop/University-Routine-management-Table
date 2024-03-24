@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-const Batch = ({ setSelectBatch }) => {
+const Batch = ({ setSelectBatch, setSelectSession }) => {
   return (
     <div className="flex justify-between items-center">
       <div>
         <label htmlFor="" className="font-bold">
-          Select Batch:{" "}
+          Select Shift:{" "}
         </label>
         <select
           className="border-2 my-[10px] px-5 py-3 cursor-pointer outline-none"
@@ -18,14 +18,16 @@ const Batch = ({ setSelectBatch }) => {
       </div>
       <div>
         <label htmlFor="" className="font-bold">
-          Select Session:{" "}
+          Select Batch:{" "}
         </label>
         <select
           className="border-2 my-[10px] px-5 py-3 cursor-pointer outline-none"
-          onChange={(e) => setSelectBatch(e.target.value)}
+          onChange={(e) => setSelectSession(e.target.value)}
           name=""
           id=""
         >
+          <option value="">Selected Batch</option>
+
           <option value="16">16th</option>
           <option value="17">17th</option>
           <option value="18">18th</option>
